@@ -1,0 +1,35 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.image img {
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.item button {
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: capitalize;
+    border-radius: 10px;
+    background: orange;
+    color: white;
+    outline: none;
+    border: none;
+    box-shadow: 0 5px 10px 5px grey;
+    cursor: pointer;
+}
+
+label {
+    font-size: 20px;
+    font-weight: lighter;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
