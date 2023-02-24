@@ -4,8 +4,22 @@ import "./style.css";
 const Productpage = () => {
   const [cartItems, setCartItems] = useState([]);
   const handleClick = item => {
-    // console.log(item);
-    setCartItems(prev => [...prev, item]);
+    let itemPresent = cartItems.find(citem => citem.id === item.id);
+    if (itemPresent) {
+      console.log(itemPresent);
+      itemPresent = { ...itemPresent, count: itemPresent.count + 1 };
+      if (itemPresent.count < 1) {
+        setCartItems(prev => [...prev, itemPresent]);
+      }
+    } else {
+      setCartItems(prev => [...prev, { ...item, count: 1 }]);
+      // console.log(cartItems);
+    }
+  };
+
+  const RemoveItem = item => {
+    const newCart = cartItems.filter(citem => citem.id !== item.id);
+    setCartItems(newCart);
   };
   return (
     <>
@@ -29,7 +43,7 @@ const Productpage = () => {
         </div>
         <div className="Cart-page">
           <h1>cart page</h1>
-          {cartItems.length == 0 ? <label>Add Items to cart</label> : ""}
+          {cartItems.length === 0 ? <label>Add Items to cart</label> : ""}
           {cartItems.length > 0 &&
             cartItems.map(item => {
               return (
@@ -39,7 +53,8 @@ const Productpage = () => {
                       <img src={item.image} alt="item" />
                     </div>
                     <h3>{item.productName}</h3>
-                    <button onClick={() => handleClick(item)}>Remove</button>
+                    {/* <p>count :1</p> */}
+                    <button onClick={() => RemoveItem(item)}>Remove</button>
                   </div>
                 </>
               );
